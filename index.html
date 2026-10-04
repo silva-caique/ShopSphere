@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShopSphere — Loja online demonstrativa de produtos tecnológicos. Projeto de portefólio.">
+  <title>ShopSphere — Loja Online de Tecnologia</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="cabecalho" role="banner">
+    <div class="cabecalho-contentor">
+      <a href="#" class="logo" aria-label="ShopSphere - Página inicial">Shop<span>Sphere</span></a>
+
+      <div class="pesquisa-contentor">
+        <label for="campo-pesquisa" class="sr-only">Pesquisar produtos</label>
+        <input type="search" id="campo-pesquisa" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos">
+        <button type="button" id="btn-limpar-pesquisa" class="btn-limpar-pesquisa" aria-label="Limpar pesquisa">×</button>
+      </div>
+
+      <nav class="nav-acoes" aria-label="Ações principais">
+        <button type="button" id="btn-abrir-favoritos" class="btn-icone" aria-label="Ver favoritos">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span id="contador-favoritos" class="contador">0</span>
+        </button>
+
+        <button type="button" id="btn-abrir-carrinho" class="btn-icone" aria-label="Abrir carrinho">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span id="contador-carrinho" class="contador">0</span>
+        </button>
+
+        <button type="button" id="btn-menu-mobile" class="btn-menu-mobile" aria-label="Abrir menu" aria-expanded="false">
+          ☰
+        </button>
+      </nav>
+
+      <nav id="nav-principal" class="nav-principal" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#catalogo">Produtos</a>
+        <a href="#beneficios">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Secção de destaque (Hero) -->
+    <section id="inicio" class="hero" aria-labelledby="hero-titulo">
+      <div class="hero-contentor">
+        <h1 id="hero-titulo">Tecnologia ao seu alcance</h1>
+        <p>Descubra os melhores gadgets, acessórios e periféricos numa loja online moderna e intuitiva.</p>
+        <button type="button" id="btn-explorar" class="btn btn-hero">Explorar produtos</button>
+      </div>
+    </section>
+
+    <!-- Categorias -->
+    <section id="categorias" class="secao" aria-labelledby="titulo-categorias">
+      <h2 id="titulo-categorias" class="secao-titulo">Categorias</h2>
+      <div id="lista-categorias" class="lista-categorias" role="group" aria-label="Filtrar por categoria">
+        <!-- Preenchido por JavaScript -->
+      </div>
+    </section>
+
+    <!-- Produtos em destaque -->
+    <section class="secao" aria-labelledby="titulo-destaque">
+      <h2 id="titulo-destaque" class="secao-titulo">Produtos em destaque</h2>
+      <p class="secao-subtitulo">Seleção de novidades e artigos populares</p>
+      <div id="produtos-destaque" class="grelha-produtos">
+        <!-- Preenchido por JavaScript -->
+      </div>
+    </section>
+
+    <!-- Secção promocional -->
+    <div class="secao-promocao" role="region" aria-label="Promoções">
+      <h2>Promoções especiais</h2>
+      <p>Aproveite descontos em auscultadores, teclados e muito mais. Preços já atualizados no catálogo.</p>
+      <button type="button" class="btn btn-secundario" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver promoções</button>
+    </div>
+
+    <!-- Catálogo principal -->
+    <section id="catalogo" class="secao" aria-labelledby="titulo-catalogo">
+      <h2 id="titulo-catalogo" class="secao-titulo">Catálogo de produtos</h2>
+
+      <!-- Filtros e ordenação -->
+      <div class="filtros" role="search" aria-label="Filtros de produtos">
+        <div class="filtro-grupo">
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria">
+            <option value="todas">Todas</option>
+          </select>
+        </div>
+
+        <div class="filtro-grupo">
+          <label for="filtro-preco-min">Preço mín. (€)</label>
+          <input type="number" id="filtro-preco-min" min="0" step="1" placeholder="0">
+        </div>
+
+        <div class="filtro-grupo">
+          <label for="filtro-preco-max">Preço máx. (€)</label>
+          <input type="number" id="filtro-preco-max" min="0" step="1" placeholder="999">
+        </div>
+
+        <div class="filtro-grupo">
+          <label for="filtro-ordenacao">Ordenar por</label>
+          <select id="filtro-ordenacao">
+            <option value="recomendados">Recomendados</option>
+            <option value="menor-preco">Menor preço</option>
+            <option value="maior-preco">Maior preço</option>
+            <option value="nome-az">Nome A–Z</option>
+            <option value="melhor-classificacao">Melhor classificação</option>
+          </select>
+        </div>
+
+        <div class="filtro-check">
+          <input type="checkbox" id="filtro-promocoes">
+          <label for="filtro-promocoes">Só promoções</label>
+        </div>
+
+        <button type="button" id="btn-limpar-filtros" class="btn btn-outline">Limpar filtros</button>
+      </div>
+
+      <p id="contador-resultados" class="contador-resultados" aria-live="polite"></p>
+
+      <div id="grelha-produtos" class="grelha-produtos">
+        <!-- Preenchido por JavaScript -->
+      </div>
+
+      <div id="mensagem-vazia" class="mensagem-vazia" role="status">
+        <p>Nenhum produto encontrado.</p>
+        <p>Tente alterar a pesquisa ou os filtros.</p>
+      </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="secao" aria-labelledby="titulo-beneficios">
+      <h2 id="titulo-beneficios" class="secao-titulo">Porquê a ShopSphere?</h2>
+      <div class="beneficios">
+        <div class="beneficio">
+          <div class="beneficio-icone" aria-hidden="true">📦</div>
+          <h3>Entrega ilustrativa</h3>
+          <p>Demonstração de um fluxo de compra simples e claro.</p>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-icone" aria-hidden="true">🛒</div>
+          <h3>Compra simples</h3>
+          <p>Carrinho funcional com quantidades e totais calculados.</p>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-icone" aria-hidden="true">✨</div>
+          <h3>Produtos selecionados</h3>
+          <p>Catálogo de gadgets e acessórios tecnológicos de demonstração.</p>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-icone" aria-hidden="true">💬</div>
+          <h3>Apoio demonstrativo</h3>
+          <p>Interface pensada para uma experiência de utilização agradável.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="rodape" role="contentinfo">
+    <div class="rodape-contentor">
+      <div>
+        <div class="logo">Shop<span>Sphere</span></div>
+        <p>Loja online demonstrativa de produtos tecnológicos. Projeto de portefólio desenvolvido com HTML, CSS e JavaScript puro.</p>
+      </div>
+      <div>
+        <h3>Navegação</h3>
+        <a href="#inicio">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#catalogo">Produtos</a>
+        <a href="#beneficios">Sobre</a>
+      </div>
+      <div>
+        <h3>Categorias</h3>
+        <a href="#catalogo" onclick="selecionarCategoria('Auscultadores')">Auscultadores</a>
+        <a href="#catalogo" onclick="selecionarCategoria('Teclados')">Teclados</a>
+        <a href="#catalogo" onclick="selecionarCategoria('Ratos')">Ratos</a>
+        <a href="#catalogo" onclick="selecionarCategoria('Gadgets')">Gadgets</a>
+      </div>
+    </div>
+    <div class="rodape-aviso">
+      <p><strong>Aviso:</strong> Esta é uma loja meramente demonstrativa. Não existem vendas reais nem sistemas de pagamento. Nenhum dado pessoal ou bancário é recolhido.</p>
+      <p>&copy; <span id="ano-atual"></span> ShopSphere — Projeto de portefólio</p>
+    </div>
+  </footer>
+
+  <!-- Overlay e painel do carrinho -->
+  <div id="overlay-carrinho" class="overlay" aria-hidden="true"></div>
+  <aside id="painel-carrinho" class="painel-carrinho" role="dialog" aria-label="Carrinho de compras" aria-modal="true">
+    <div class="painel-cabecalho">
+      <h2>Carrinho</h2>
+      <button type="button" id="btn-fechar-carrinho" class="btn-fechar" aria-label="Fechar carrinho">×</button>
+    </div>
+    <div id="lista-carrinho" class="lista-carrinho">
+      <!-- Preenchido por JavaScript -->
+    </div>
+    <div id="carrinho-vazio" class="carrinho-vazio">
+      <p>O seu carrinho está vazio.</p>
+      <p>Adicione produtos para começar.</p>
+    </div>
+    <div class="painel-rodape">
+      <div class="total-linha">
+        <span>Total</span>
+        <span id="total-carrinho">0,00 €</span>
+      </div>
+      <div id="acoes-carrinho" class="acoes-carrinho" style="display:none;">
+        <button type="button" class="btn btn-primario" onclick="finalizarCompra()">Finalizar compra</button>
+        <button type="button" class="btn btn-perigo" onclick="limparCarrinhoCompleto()">Limpar carrinho</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overlay e modal de detalhes -->
+  <div id="overlay-modal" class="overlay" aria-hidden="true"></div>
+  <div id="modal-detalhes" class="modal-detalhes" role="dialog" aria-label="Detalhes do produto" aria-modal="true">
+    <div class="modal-contentor">
+      <div class="modal-imagem-zona">
+        <img id="modal-imagem" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <button type="button" id="btn-fechar-modal" class="btn-fechar" aria-label="Fechar detalhes">×</button>
+        <p id="modal-categoria" class="modal-categoria"></p>
+        <h2 id="modal-nome"></h2>
+        <div id="modal-classificacao"></div>
+        <div id="modal-preco" class="modal-preco"></div>
+        <p id="modal-descricao" class="modal-descricao"></p>
+        <div class="modal-quantidade-zona">
+          <label for="modal-quantidade">Quantidade</label>
+          <button type="button" class="btn-qtd" onclick="alterarQuantidadeModal(-1)" aria-label="Diminuir">−</button>
+          <input type="number" id="modal-quantidade" value="1" min="1" aria-label="Quantidade">
+          <button type="button" class="btn-qtd" onclick="alterarQuantidadeModal(1)" aria-label="Aumentar">+</button>
+        </div>
+        <div class="modal-acoes">
+          <button type="button" class="btn btn-primario" onclick="adicionarDoModal()">Adicionar ao carrinho</button>
+          <button type="button" id="modal-btn-favorito" class="btn btn-outline" onclick="alternarFavoritoModal()">Adicionar aos favoritos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contentor de notificações -->
+  <div id="notificacoes" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Estilo para screen-reader only -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <!-- Scripts: ordem importante -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
